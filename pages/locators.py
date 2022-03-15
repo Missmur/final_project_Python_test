@@ -6,5 +6,11 @@ class MainPageLocators():
 
 
 class LoginPageLocators():
-    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form_invalid")
-    REG_FORM = (By.CSS_SELECTOR, "#register_form_invalid")
+    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+    REG_FORM = (By.CSS_SELECTOR, "#register_form")
+
+
+class ProductPageLocators:
+    ITEM_NAME = (By.CSS_SELECTOR, "div.product_main h1")
+    ITEM_PRICE = (By.CSS_SELECTOR, "div.product_main p.price_color")
+    ADD_BUTTON = (By.CSS_SELECTOR, "#add_to_basket_form button.btn")
