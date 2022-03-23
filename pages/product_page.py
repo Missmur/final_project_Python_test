@@ -24,3 +24,7 @@ class ProductPage(BasePage):
     def should_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is not disappeared, but should be"
+
+    def add_item_to_basket(self):
+        add_to_button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON)
+        add_to_button.click()
