@@ -1,21 +1,18 @@
 import pytest
 
-from .pages import product_page
-from .pages.base_page import BasePage
+
 from .pages.login_page import LoginPage
-from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 import time
 
 
 @pytest.mark.need_review
-def test_quest_can_add_product_to_basket(browser, link):
+def test_quest_can_add_product_to_basket(browser):
     link_url = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link_url)
     page.open()
     page.add_to_basket()
-    page.solve_quiz_and_get_code()
     page.assert_item_price()
     page.assert_item_name()
 
@@ -26,7 +23,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket()
-    #page.solve_quiz_and_get_code()
     page.should_not_be_success_message()
 
 
@@ -44,7 +40,6 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket()
-    #page.solve_quiz_and_get_code()
     time.sleep(1)
     page.should_disappeared()
 
@@ -65,7 +60,6 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
-    time.sleep(10)
 
 
 @pytest.mark.need_review
@@ -86,7 +80,6 @@ def test_guest_cant_see_empty_message_in_basket(browser):
     page.open()
     page.add_item_to_basket()
     page.go_to_basket_page()
-    #time.sleep(20)
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_basket_page()
     basket_page.should_be_empty_basket()
